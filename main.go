@@ -1,3 +1,6 @@
+// main.go
+// https://www.codingame.com/ide/puzzle/mad-pod-racing
+// main is the main package for the racing coding game game
 package main
 
 import (
@@ -10,6 +13,7 @@ const (
 	podCollisionRadius  = 400
 	boostExecuteKeyword = "BOOST"
 	boostCount          = 1
+	friction            = 0.85
 )
 
 var headingError = 90
@@ -172,7 +176,7 @@ func main() {
 		vector := NewVec2(float64(nextCheckpointX), float64(nextCheckpointY))
 		// Thrusting
 		if boost.TryBoosting() {
-			fmt.Println(boostExecuteKeyword)
+			fmt.Println(vector.String(), boostExecuteKeyword)
 		} else {
 			var thrust int
 			heading := math.Abs(float64(nextCheckpointAngle))
@@ -181,7 +185,7 @@ func main() {
 			} else {
 				thrust = 100
 			}
-			fmt.Printf("%s %d\n", vector.String(), thrust)
+			fmt.Println(vector.String(), thrust)
 		}
 	}
 }
